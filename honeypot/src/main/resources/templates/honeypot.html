@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Honeypot</title>
+    <link rel="icon" type="image/x-ico" href="img/xlbit.ico" />
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link href="css/style.blue.css" rel="stylesheet" type="text/css">
+    <link href="css/style.default.css" rel="stylesheet" type="text/css">
+    <style>
+        @media screen and (max-width: 750px) {
+            #main {
+                margin-top: -80px;
+            }
+            #big {
+                display: none;
+            }
+            .slogan {
+                font-size: 20px;
+            }
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: none
+        }
+
+        @media screen and (min-width: 751px) {
+            #small {
+                display: none;
+            }
+        }
+
+        .modal.fade.in{
+            top:90px;
+        }
+
+        body{
+            /*background: url("img/back.jpg") no-repeat;*/
+            font-family: 'Myriad Pro', 'Helvetica';
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="text-intro">
+<a href="/sumary.html" style="position:fixed; _position:absolute; left:0px; top:0px;" title="View Statistics Info">
+    <span class="glyphicon glyphicon-eye-open" style="width: 50px;height: 50px;margin: 20px;color: white;font-size: 40px;"></span>
+</a>
+
+<div class="container-fluid">
+    <div style="margin-top: 5%;"></div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>This may be a honeypot, <span class="rotate">please enter the ip address</span> to judge.</h1>
+            <h3 class="weight-300">It takes some time to judge, wait patiently.</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12 input-group has-success" style="margin:20px">
+                <input name="ipStr" type="text" class="form-control" onkeydown="keySearch();" onkeyup="LockEnglish();" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\a-zA-Z]/g,''))" style="font-family:consolas;height:45px;"/>
+                <span class="input-group-btn">
+						<button id="checkBtn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#SearchModal" style="height:45px;">Check for Honeypot</button>
+                </span>
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="SearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div style="height: 10px;"></div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: 100%;">
+                                        <span class="sr-only">100% 完成</span>
+                                    </div>
+                                </div>
+                                <div style="height: 10px;"></div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="js/jquery-2.1.1.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $("[data-toggle='popover']").popover();
+    $("#checkBtn").click(function () {
+        var ip = $('input[name="ipStr"]').val();
+        // console.log(ip);
+        if (isEmpty(ip)){
+            alert("Please enter ip!");
+            $("#SearchModal").modal('hide');
+            //搜索内容为空，返回首页
+            window.location.href="/index.html";
+            return;
+        }
+        if (!isValidIp(ip)){
+            alert("Please enter valid ip.");
+            $("#SearchModal").modal('hide');
+            //搜索内容为空，返回首页
+            window.location.href="/index.html";
+            return;
+        }
+        // 如果输入的ip值有效，则跳转
+        window.location.href = "/"+ip;
+        //关闭模态框
+        $("#SearchModal").modal('hide');
+    });
+    function keySearch(){
+        //回车发起检索
+        if(event.keyCode == 13){
+            $('#dyting_search').click();
+        }
+    }
+    // 判断是否为空
+    function isEmpty(v) {
+        if (v === null || v === undefined || v === "")
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    // 验证ip是否合法
+    function isValidIp(ip)
+    {
+        var reg =  /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+        return reg.test(ip);
+    }
+</script>
+</html>

@@ -1,0 +1,64 @@
+{
+  "RECORDS": [
+    {
+      "IPWHOIS": "Amazon Technologies Inc.",
+      "NUM": "327"
+    },
+    {
+      "IPWHOIS": "University of Maryland",
+      "NUM": "224"
+    },
+    {
+      "IPWHOIS": "DigitalOcean, LLC",
+      "NUM": "189"
+    },
+    {
+      "IPWHOIS": "Unknown",
+      "NUM": "92"
+    },
+    {
+      "IPWHOIS": "Choopa, LLC",
+      "NUM": "61"
+    },
+    {
+      "IPWHOIS": "Microsoft Corporation",
+      "NUM": "30"
+    },
+    {
+      "IPWHOIS": "OVH Hosting, Inc.",
+      "NUM": "21"
+    },
+    {
+      "IPWHOIS": "Linode",
+      "NUM": "20"
+    },
+    {
+      "IPWHOIS": "Korea Telecom",
+      "NUM": "20"
+    },
+    {
+      "IPWHOIS": "Failover IPs",
+      "NUM": "18"
+    },
+    {
+      "IPWHOIS": "Orange Mobile",
+      "NUM": "17"
+    },
+    {
+      "IPWHOIS": "Google LLC",
+      "NUM": "15"
+    },
+    {
+      "IPWHOIS": "Alibaba.com LLC",
+      "NUM": "14"
+    },
+    {
+      "IPWHOIS": "Service Provider Corporation",
+      "NUM": "14"
+    },
+    {
+      "IPWHOIS": "Deutsche Telekom AG\nT-DSL Business static dial-up",
+      "NUM": "12"
+    }
+  ]
+}

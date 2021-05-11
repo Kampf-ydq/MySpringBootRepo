@@ -42,7 +42,8 @@ class HoneypotApplicationTests {
 
     @Test
     void testSQL(){
-        System.out.println(service.isExistIp("129.2.27.24"));
+        // "5.26.88.89"
+        System.out.println(service.judgeHoneypotByIp("5.26.88.89"));
     }
 
 }

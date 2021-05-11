@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+.navbar{
+	border-bottom-color:grey;
+}
+
+.footer{
+	border-top-color:green;
+}
+
+.copyright{
+	font-size:15px;
+}
+
+.list-inline{
+	float:left;
+}
+
+/* a{
+	color:black;
+} */
+a:link {color: black}		/* 未访问的链接 */
+a:visited {color: black}	/* 已访问的链接 */
+a:hover {color: black}	/* 鼠标移动到链接上 */
+a:active {color: black}  /* 选定的链接 */
+
+ @font-face {
+  font-family: "微软雅黑";   /*字体名称*/ 
+ } 
+
+.navbar-brand{
+	font-family:"华文细黑";
+	font-size:38px;
+}
+
+#summary,#report,#handbook,#earth{
+	font-family:"微软雅黑";
+	font-size:16px;
+}
+#blank_top{
+	height:100px;
+}

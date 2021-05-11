@@ -1,0 +1,44 @@
+{
+  "RECORDS": [
+    {
+      "COUNTRY": "United States",
+      "NUM": "665"
+    },
+    {
+      "COUNTRY": "Japan",
+      "NUM": "66"
+    },
+    {
+      "COUNTRY": "Germany",
+      "NUM": "62"
+    },
+    {
+      "COUNTRY": "Australia",
+      "NUM": "57"
+    },
+    {
+      "COUNTRY": "Canada",
+      "NUM": "46"
+    },
+    {
+      "COUNTRY": "Singapore",
+      "NUM": "45"
+    },
+    {
+      "COUNTRY": "Poland",
+      "NUM": "44"
+    },
+    {
+      "COUNTRY": "United Arab Emirates",
+      "NUM": "39"
+    },
+    {
+      "COUNTRY": "United Kingdom",
+      "NUM": "37"
+    },
+    {
+      "COUNTRY": "Republic of Korea",
+      "NUM": "37"
+    }
+  ]
+}

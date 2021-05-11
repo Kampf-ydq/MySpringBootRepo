@@ -1,0 +1,64 @@
+{
+  "RECORDS": [
+    {
+      "OS": "Unknown",
+      "NUM": "523"
+    },
+    {
+      "OS": "Linux 2.6.32",
+      "NUM": "495"
+    },
+    {
+      "OS": "Linux 3.11 - 4.1",
+      "NUM": "126"
+    },
+    {
+      "OS": "Linux 4.4",
+      "NUM": "33"
+    },
+    {
+      "OS": "Linux 2.6.32 or 3.10",
+      "NUM": "28"
+    },
+    {
+      "OS": "Linux 4.0",
+      "NUM": "21"
+    },
+    {
+      "OS": "Linux 3.2 - 3.8",
+      "NUM": "15"
+    },
+    {
+      "OS": "Linux 3.6",
+      "NUM": "10"
+    },
+    {
+      "OS": "Apple AirPort Extreme WAP",
+      "NUM": "7"
+    },
+    {
+      "OS": "Cisco 2600 router (IOS 11.3)",
+      "NUM": "6"
+    },
+    {
+      "OS": "Linksys BEFSR41 EtherFast router",
+      "NUM": "6"
+    },
+    {
+      "OS": "Linux 4.2",
+      "NUM": "6"
+    },
+    {
+      "OS": "OpenBSD 4.0",
+      "NUM": "5"
+    },
+    {
+      "OS": "F5 BIG-IP Edge Gateway",
+      "NUM": "4"
+    },
+    {
+      "OS": "Linux 3.10 - 3.12",
+      "NUM": "3"
+    }
+  ]
+}

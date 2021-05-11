@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Honeypot Result</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery-2.1.1.js" ></script>
+    <style type="text/css">
+        .glyphicon{
+            color: #8c8c8c;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="margin-top: 20px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 th:text="${#request.getAttribute('honeypot').getIp()}">***</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <!--Show Honeypot info-->
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="col-md-5">Country</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getCountry()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5" >City</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getCity()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">IsCloud</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getIsCloud()}">false</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">IPwhoisNetsDescription</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getIPwhoisNetsDescription()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">OS</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getOS()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">OSaccuracy</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getOSaccuracy()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">HopNum</label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getHopNum()}">***</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-5">
+                            Port <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                      style="cursor:pointer;" data-content="蜜罐开放的端口数量"></span>
+                        </label>
+                        <p class="col-md-7" th:text="${#request.getAttribute('honeypot').getOpenPortNum()}">***</p>
+                    </div>
+                </div>
+                <!--Honeypot picture-->
+                <div class="col-md-2" style="height: 150px;" th:if="${isHoneypot}">
+                    <h3>ICS Honeypot</h3>
+                    <img src="img/honeypot.png">
+                </div>
+                <div id="honeypot" class="col-md-4" style="height: 300px;" th:if="${isHoneypot}"></div>
+
+                <!--isn't honeypot picture-->
+                <div class="col-md-2" style="height: 150px;" th:if="${isHoneypot} == false">
+                    <h3>PLC equipment</h3>
+                </div>
+                <div id="ics" class="col-md-4" style="height: 300px;" th:if="${isHoneypot} == false"></div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <!--S7 protocl-->
+            <div class="row" th:if="${isS7}">
+                <h2 class="col-md-2"><span class="label label-primary">S7</span></h2>
+                <div class="col-md-10">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getS7NameOfThePLC()}">*</span>
+                            s7NameOfThePLC <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                 style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getS7PlantIdentification()}">*</span>
+                            s7PlantIdentification <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                        style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getS7SerialNumberOfModule()}">*</span>
+                            s7SerialNumberOfModule <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                         style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getS7time5After()}">*</span>
+                            s7time5After <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                               style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getS7ResponseTime()}">*</span>
+                            s7ResponseTime <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                 style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Modbus protocl-->
+            <div class="row" th:if="${isModbus}">
+                <h2 class="col-md-2"><span class="label label-primary">Modbus</span></h2>
+                <div class="col-md-10">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getModbusErrorRequestTime()}">*</span>
+                            modbusErrorRequestTime <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                         style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getModbusReadRegister()}">*</span>
+                            modbusReadRegister <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                     style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Atg protocl-->
+            <div class="row" th:if="${isAtg}">
+                <h2 class="col-md-2"><span class="label label-primary">Atg</span></h2>
+                <div class="col-md-10">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getAtgSUPER()}">*</span>
+                            atgSUPER <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                           style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getAtgUNLEAD()}">*</span>
+                            atgUNLEAD <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                            style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getAtgDIESEL()}">*</span>
+                            atgDIESEL <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                            style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getAtgPREMIUM()}">*</span>
+                            atgPREMIUM <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                             style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge" th:text="${#request.getAttribute('honeypot').getAtgTwoTimesCompare()}">*</span>
+                            atgTwoTimesCompare <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-container="body" data-placement="right"
+                                                     style="cursor:pointer;" data-content="来吧小老弟，编"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    此处用来获取thymeleaf Model中的值-->
+<!--    将值赋给hidden域-->
+    <input type="hidden" th:value="${#request.getAttribute('honeypot').getLatitude()}" id="latitude"/>
+    <input type="hidden" th:value="${#request.getAttribute('honeypot').getLongitude()}" id="longitude"/>
+    <input type="hidden" th:value="${isHoneypot}" id="isPot"/>
+
+</div>
+    <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-gl.min.js" ></script>
+    <script type="text/javascript" src="js/world.js"></script>
+    <script type="text/javascript" src="js/china.js"></script>
+    <script type="text/javascript" src="js/echarts-liquidfill.min.js"></script>
+    <script type="text/javascript">
+    //启用Bootstrap弹出框（Popover）插件
+    $(function () {
+        $("[data-toggle='popover']").popover();
+    });
+
+    //Js 获取hidden的隐藏域，地理坐标值
+    var latitude=$("#latitude").val();
+    var longitude=$("#longitude").val();
+    var isHoneypot=$("#isPot").val();
+    console.log(isHoneypot);
+
+    if (isHoneypot === "true"){
+        var myChart = echarts.init(document.getElementById('honeypot'));
+        var convertData = function () {
+            var res = [];
+            var geoCoord = [longitude, latitude];
+            res.push({
+                name: "",
+                value: geoCoord.concat("Honeypot")
+            });
+            return res;
+        };
+        option = {
+            visualMap: {
+                show: false,
+                min: 0,
+                max: 500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高', '低'], // 文本，默认为数值文本
+                calculable: true,
+                seriesIndex: [1],
+                inRange: {
+
+                }
+            },
+            geo: {
+                map: 'world',
+                show: true,
+                roam: true,
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#3a7fd5',
+                        borderColor: '#0a53e9',//线
+                        shadowColor: '#092f8f',//外发光
+                        shadowBlur: 20
+                    },
+                    emphasis: {
+                        areaColor: '#0a2dae',//悬浮区背景
+                    }
+                }
+            },
+            series : [
+                {
+                    symbolSize: 5,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: true
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#fff'
+                        }
+                    },
+                    name: 'light',
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    data: convertData(),
+
+                },
+                {
+                    type: 'map',
+                    map: 'world',
+                    geoIndex: 0,
+                    aspectScale: 0.75, //长宽比
+                    showLegendSymbol: false, // 存在legend时显示
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    roam: true,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#031525',
+                            borderColor: '#FFFFFF',
+                        },
+                        emphasis: {
+                            areaColor: '#2B91B7'
+                        }
+                    },
+                    animation: false
+                },
+                {
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    symbol: 'pin',
+                    symbolSize: [50,50],
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                color: '#000',
+                                fontSize: 9,
+                            },
+                            formatter (value){
+                                return value.data.value[2]
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#cc0000', //标志颜色
+                        }
+                    },
+                    data: convertData(),
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    zlevel: 1
+                }
+
+            ]
+        };
+        myChart.setOption(option);
+    }else {
+        var icsChart = echarts.init(document.getElementById('ics'));
+        var ics_convertData = function () {
+            var res = [];
+            var geoCoord = [longitude, latitude];
+            res.push({
+                name: "",
+                value: geoCoord.concat("PLC equipment")
+            });
+            return res;
+        };
+        option1 = {
+            visualMap: {
+                show: false,
+                min: 0,
+                max: 500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高', '低'], // 文本，默认为数值文本
+                calculable: true,
+                seriesIndex: [1],
+                inRange: {
+
+                }
+            },
+            geo: {
+                map: 'world',
+                show: true,
+                roam: true,
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#3a7fd5',
+                        borderColor: '#0a53e9',//线
+                        shadowColor: '#092f8f',//外发光
+                        shadowBlur: 20
+                    },
+                    emphasis: {
+                        areaColor: '#0a2dae',//悬浮区背景
+                    }
+                }
+            },
+            series : [
+                {
+                    symbolSize: 5,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: true
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#fff'
+                        }
+                    },
+                    name: 'light',
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    data: ics_convertData(),
+
+                },
+                {
+                    type: 'map',
+                    map: 'world',
+                    geoIndex: 0,
+                    aspectScale: 0.75, //长宽比
+                    showLegendSymbol: false, // 存在legend时显示
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    roam: true,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#031525',
+                            borderColor: '#FFFFFF',
+                        },
+                        emphasis: {
+                            areaColor: '#2B91B7'
+                        }
+                    },
+                    animation: false
+                },
+                {
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    symbol: 'pin',
+                    symbolSize: [50,50],
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                color: '#000',
+                                fontSize: 9,
+                            },
+                            formatter (value){
+                                return value.data.value[2]
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#cc0000', //标志颜色
+                        }
+                    },
+                    data: ics_convertData(),
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    zlevel: 1
+                }
+
+            ]
+        };
+        icsChart.setOption(option1);
+    }
+    </script>
+</body>
+</html>

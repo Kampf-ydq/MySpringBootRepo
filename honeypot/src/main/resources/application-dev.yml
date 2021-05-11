@@ -17,3 +17,4 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml  # Mapper XML所在位置
   type-aliases-package: com.neu.honeypot.entity # 映射类的所在位置
+

@@ -5,10 +5,37 @@
     <resultMap id="BaseResultMap" type="com.neu.honeypot.entity.Honeypot">
         <result column="id" jdbcType="INTEGER" property="id" />
         <result column="ip" jdbcType="VARCHAR" property="ip" />
+        <result column="IsHoneypot" jdbcType="VARCHAR" property="IsHoneypot" />
+        <result column="IsS7" jdbcType="VARCHAR" property="IsS7" />
+        <result column="s7NameOfThePLC" jdbcType="VARCHAR" property="s7NameOfThePLC" />
+        <result column="s7PlantIdentification" jdbcType="VARCHAR" property="s7PlantIdentification" />
+        <result column="s7SerialNumberOfModule" jdbcType="VARCHAR" property="s7SerialNumberOfModule" />
+        <result column="s7time5After" jdbcType="VARCHAR" property="s7time5After" />
+        <result column="s7ResponseTime" jdbcType="VARCHAR" property="s7ResponseTime" />
+        <result column="IsModbus" jdbcType="VARCHAR" property="IsModbus" />
+        <result column="modbusErrorRequestTime" jdbcType="VARCHAR" property="modbusErrorRequestTime" />
+        <result column="modbusReadRegister" jdbcType="VARCHAR" property="modbusReadRegister" />
+        <result column="IsCloud" jdbcType="VARCHAR" property="IsCloud" />
+        <result column="IPwhoisNetsDescription" jdbcType="VARCHAR" property="IPwhoisNetsDescription" />
+        <result column="OS" jdbcType="VARCHAR" property="OS" />
+        <result column="OSaccuracy" jdbcType="VARCHAR" property="OSaccuracy" />
+        <result column="OpenPortNum" jdbcType="VARCHAR" property="OpenPortNum" />
+        <result column="hopNum" jdbcType="VARCHAR" property="hopNum" />
+        <result column="IsAtg" jdbcType="VARCHAR" property="IsAtg" />
+        <result column="atgSUPER" jdbcType="VARCHAR" property="atgSUPER" />
+        <result column="atgUNLEAD" jdbcType="VARCHAR" property="atgUNLEAD" />
+        <result column="atgDIESEL" jdbcType="VARCHAR" property="atgDIESEL" />
+        <result column="atgPREMIUM" jdbcType="VARCHAR" property="atgPREMIUM" />
+        <result column="atgTwoTimesCompare" jdbcType="VARCHAR" property="atgTwoTimesCompare" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country" jdbcType="VARCHAR" property="country" />
+        <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+        <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+        <result column="HoneypotFlag" jdbcType="VARCHAR" property="HoneypotFlag" />
     </resultMap>
 
     <select id="selectByIp" resultType="com.neu.honeypot.entity.Honeypot">
-        SELECT id, ip FROM allhoneypot_recog WHERE ip LIKE CONCAT('%',#{ip},'%')
+        SELECT * FROM allhoneypot_recog WHERE ip LIKE CONCAT('%',#{ip},'%')
     </select>
 
 </mapper>
